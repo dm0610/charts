@@ -10,6 +10,30 @@ metadata:
   name: {{ template "kubernetes-dashboard.fullname" . }}
   namespace: {{ .Release.Namespace }}
 rules:
+#### Add resources 
+- apiGroups:
+  - "*"
+  resources:
+  - "*"
+  verbs:
+  - get
+  - list
+  - watch
+  - describe
+  - exec
+  - update
+  - delete
+  - create
+- apiGroups:
+  - ""
+  resourceNames:
+  - kubernetes-dashboard-csrf
+  resources:
+  - secrets
+  verbs:
+  - get
+  - update
+  - delete
   # Allow Dashboard to create 'kubernetes-dashboard-key-holder' secret.
 - apiGroups:
     - ""
